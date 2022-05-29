@@ -8,7 +8,7 @@ See src/index to store
 
 See src/components/app for connecting to the store
 
-Note that because I use function components and hooks instead of legacy class components and lifecycle methods (the tutorial uses class components), we do not gain access to global redux state via connect(), mapStateToProps, mapDispatch, etc. useSelector and useDispatch are the tools of choice instead.
+Note, I opted to use function components and hooks instead of class components and lifecycle methods (the tutorial uses class components), we do not gain access to global redux state via connect(), mapStateToProps, mapDispatch, etc. useSelector and useDispatch are the tools of choice instead.
 
 ### Generator Functions 
 
@@ -21,6 +21,14 @@ See src/sagas/users for Creating
 As a rule of thumb, the file structure and file naming within the sagas folder should mirror the actions folder. So, if actions contains the files foo.js, bar,.js, baz.js, so too should the sagas folder have foo.js, bar.js, and baz.js.
 
 See src/index for Connecting the Sagas to Redux
+
+### Sagas, _IMPORTANT_ Note About Reducers 
+
+The tutorial doesn't explicitly talk about this, but we don't have a reducer switch case handling the GET_USERS_REQUEST action. Instead, we use 
+
+`yield takeEvery(GET_USERS_REQUEST, getUsers)` 
+
+Note that the second argument, `getUsers`, is a function that actually makes the API call and handles the asynchronous middle part (this is the middle in middleware) of this flow. Not until this flow succeeds do we actually jump back into a reducer and update state with the GET_USER_SUCCESS_ACTION. 
 
 
 ### Sagas, "takeEvery"
@@ -71,6 +79,10 @@ This is kind of like [Promise.all()](https://developer.mozilla.org/en-US/docs/We
 In the context of Redux Saga, `yield all([ ...FooSagas, ...BarSagas, ...EtcSagas ])`, returns an array of sagas that are then run in paralell. TO-DO FIX THIS EXPLANATION IT'S WEAK AND DOESN'T EVEN MAKE SENSE TO ME. 
 
 
+### Sagas, "put"
 
+See src/sagas/user 
+
+Essentially, put allows you to dispatch an action from within a saga/generator function. 
 
 
