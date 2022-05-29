@@ -2,21 +2,26 @@
 
 Simple project focused on solely on learning Redux Saga
 
-### Create Redux Store
+### Create, Connect to Redux Store
 
-See src/index
+See src/index to store
 
-TO-DO: add link to src/index?
+See src/components/app for connecting to the store
+
+Note that because I use function components and hooks instead of legacy class components and lifecycle methods (the tutorial uses class components), we do not gain access to global redux state via connect(), mapStateToProps, mapDispatch, etc. useSelector and useDispatch are the tools of choice instead.
 
 ### Generator Functions 
 
 See src/components/app
 
-### Sagas, Creating
+### Sagas, Creating and Connecting to Redux
 
-See src/sagas/users
+See src/sagas/users for Creating
 
-As a rule of thumb, the file structure and file naming within the sagas folder should mirror the actions folder. So, if actions contains the files foo.js, bar,.js, baz.js, so too should the sagas folder have foo.js, bar.js, and baz.js. 
+As a rule of thumb, the file structure and file naming within the sagas folder should mirror the actions folder. So, if actions contains the files foo.js, bar,.js, baz.js, so too should the sagas folder have foo.js, bar.js, and baz.js.
+
+See src/index for Connecting the Sagas to Redux
+
 
 ### Sagas, "takeEvery"
 
@@ -54,5 +59,18 @@ So TO-DO add an example and a better description here.
 _fork_
 
 See src/sagas/users
+
+I still don't fully understand this. Essentially it spawns a child process that can run in paralell to other processes. 
+
+_all_
+
+See src/sagas/index
+
+This is kind of like [Promise.all()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all), which accepts an iterable (i.e. array) of promises and returns only one promise that _only resolves when all of the input promises resolve_. It (Promise.all()) resolves with an array of _returned values from original inputs_. 
+
+In the context of Redux Saga, `yield all([ ...FooSagas, ...BarSagas, ...EtcSagas ])`, returns an array of sagas that are then run in paralell. TO-DO FIX THIS EXPLANATION IT'S WEAK AND DOESN'T EVEN MAKE SENSE TO ME. 
+
+
+
 
 

@@ -3,8 +3,6 @@ import { getUsersAPIrequest } from '../api/users'
 import {
     GET_USERS_REQUEST,
     GET_USERS_SUCCESS,
-    getUsersRequest,
-    getUsersSuccess
 } from '../actions/users'
 import * as actions from '../actions/users'
 
@@ -18,7 +16,7 @@ function* getUsers() {
 }
 
 function* watchGetUsersRequest() {
-    yield takeEvery(GET_USERS_SUCCESS, getUsers)
+    yield takeEvery(GET_USERS_REQUEST, getUsers)
 }
 
 const UsersSagas = [

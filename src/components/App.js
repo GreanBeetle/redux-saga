@@ -1,4 +1,6 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { getUsersRequest } from '../actions/users'
 
 function* testing() {
     while(true) {
@@ -14,6 +16,16 @@ const App = () => {
     console.log('iterator.next()', iterator.next())
     console.log('iterator.next()', iterator.next())
     console.log('iterator.next()', iterator.next())
+
+
+    const globalState = useSelector( state => state)
+    const dispatch = useDispatch()
+    console.log('globalState?', globalState) // REMOVE
+
+    useEffect( () => {
+        dispatch(getUsersRequest())
+    }, [])
+
     return <div>test app</div>
 } 
 
