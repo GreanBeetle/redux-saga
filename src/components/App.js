@@ -1,4 +1,4 @@
-const App = () => <div>test aoo</div>
+const App = () => <div>test app</div>
 
 
 export default App;
